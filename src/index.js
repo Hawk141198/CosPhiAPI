@@ -225,13 +225,3 @@ powerSource.i_L3 = calcI(powerSource.s_L3);
 powerSource.neutraLI = calcNeutralI(powerSource);
 
 console.log(powerSource);
-
-/*ToDo:
-- API für drumherum bauen
-  - Nur den cosPhi von einem Gerät
-  - cosPhi von Phase
-  - Stromstärke von Phase
-  - NeutraLLeiterstrom
-- Dokumentation dazu und Kommentare
-- Methodennamen anpassen
-*/
