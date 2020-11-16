@@ -4,10 +4,10 @@ Dies ist eine API/Libary/Code[ ]Vorschlag um den für eine Veranstaltungstechnik
 
 
 ToDo:
-[ ] API für drumherum bauen
-  [ ] Nur den cosPhi von einem Gerät
-  [ ] cosPhi von Phase
-  [ ] Stromstärke von Phase
-  [ ] NeutraLLeiterstrom
-[ ] Dokumentation dazu und Kommentare
-[ ] Methodennamen anpassen
+- [ ] API für drumherum bauen
+  - [ ] Nur den cosPhi von einem Gerät
+  - [ ] cosPhi von Phase
+  - [ ] Stromstärke von Phase
+  - [ ] NeutraLLeiterstrom
+- [ ] Dokumentation dazu und Kommentare
+- [ ] Methodennamen anpassen
