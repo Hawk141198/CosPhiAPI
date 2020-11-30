@@ -285,7 +285,7 @@ console.log(powerSource);
 
 const deviceDistributon = {
 L1: ["Moving-Head", "Amp", "Moving-Head"],
-L2 = ["Pult", "Amp"],
-L3 = ["Amp", "Amp", "Amp"]
+L2: ["Pult", "Amp"],
+L3: ["Amp", "Amp", "Amp"]
 }
 console.log(getPowerSourceValues(deviceDistribution));
