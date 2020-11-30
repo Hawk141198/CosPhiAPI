@@ -10,4 +10,4 @@ ToDo:
   - [ ] Stromstärke von Phase
   - [ ] NeutraLLeiterstrom
 - [ ] Dokumentation dazu und Kommentare
-- [ ] Methodennamen anpassen
+- [ ] Methodennamen anpassenit
