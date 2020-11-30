@@ -155,6 +155,62 @@ function calcNeutralI(pS){
 
 }
 
+function getPowerSourceValues(deviceDistribution){
+const powerSource = {};
+
+//Anlegen der Werte von Blind- und Wirkleistung für die Phase L1
+powerSource.p_L1 = 0;
+powerSource.q_L1 = 0;
+//Aufsummieren der Werte der einzelenen Geräte auf der Phase L1
+deviceDistribution.L1.forEach(device => {
+    powerSource.p_L1 = powerSource.p_L1 + devices[device].p;
+    powerSource.q_L1 = powerSource.q_L1 + devices[device].q;
+});
+
+
+//Anlegen der Werte von Blind- und Wirkleistung für die Phase L1
+powerSource.p_L2 = 0;
+powerSource.q_L2 = 0;
+//Aufsummieren der Werte der einzelenen Geräte auf der Phase L1
+deviceDistribution.L2.forEach(device => {
+    powerSource.p_L2 = powerSource.p_L2 + devices[device].p;
+    powerSource.q_L2 = powerSource.q_L2 + devices[device].q;
+});
+
+//Anlegen der Werte von Blind- und Wirkleistung für die Phase L1
+powerSource.p_L3 = 0;
+powerSource.q_L3 = 0;
+//Aufsummieren der Werte der einzelenen Geräte auf der Phase L1
+deviceDistribution.L3.forEach(device => {
+    powerSource.p_L3 = powerSource.p_L3 + devices[device].p;
+    powerSource.q_L3 = powerSource.q_L3 + devices[device].q;
+});
+
+//Berechnen der Scheinleistung der einzelnen Phasen
+powerSource.s_L1 = calcS(powerSource.q_L1, powerSource.p_L1);
+powerSource.s_L2 = calcS(powerSource.q_L2, powerSource.p_L2);
+powerSource.s_L3 = calcS(powerSource.q_L3, powerSource.p_L3);
+
+//Berechnen des cosPhi der einzelnen Phasen
+powerSource.cosPhi_L1 = calcCosPhi(powerSource.p_L1, powerSource.s_L1);
+powerSource.cosPhi_L2 = calcCosPhi(powerSource.p_L2, powerSource.s_L2);
+powerSource.cosPhi_L3 = calcCosPhi(powerSource.p_L3, powerSource.s_L3);
+
+//Berechnen des Phasenverschiebungswinkels für die einzelnen Phasen
+powerSource.phi_L1 = calcPhi(powerSource.cosPhi_L1);
+powerSource.phi_L2 = calcPhi(powerSource.cosPhi_L2);
+powerSource.phi_L3 = calcPhi(powerSource.cosPhi_L3);
+
+//Berechnen der Stromstärke der einzelnen Phasen
+powerSource.i_L1 = calcI(powerSource.s_L1);
+powerSource.i_L2 = calcI(powerSource.s_L2);
+powerSource.i_L3 = calcI(powerSource.s_L3);
+
+//Berechnen des Neutralleiterstroms
+powerSource.neutraLI = calcNeutralI(powerSource);
+return powerSource;
+}
+
 //Array der Geräte die auf den einzelnen Phasen liegen.
 const L1 = ["Moving-Head", "Amp", "Moving-Head"];
 const L2 = ["Pult", "Amp"];
@@ -225,3 +281,11 @@ powerSource.i_L3 = calcI(powerSource.s_L3);
 powerSource.neutraLI = calcNeutralI(powerSource);
 
 console.log(powerSource);
+
+
+const deviceDistributon = {
+L1: ["Moving-Head", "Amp", "Moving-Head"],
+L2 = ["Pult", "Amp"],
+L3 = ["Amp", "Amp", "Amp"]
+}
+console.log(getPowerSourceValues(deviceDistribution));
