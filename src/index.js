@@ -216,29 +216,30 @@ console.log(getPowerSourceValues(deviceDistribution));
 /**
  * Gibt die Leistungswerte einens fiktiven Stromanschlusses zurück. Darunter zählen die Leistungen (Wirk-,Blind-,Scheinleistung) und der cosPhi.
  * @param {Object} deviceDistributionSinglePhase Eine Liste der Geräte die auf dieser Phase sind.
+ * @returns {Object} {p: X, q: X, s: X, cosPhi: X, i: X}
  */
 function getPhaseValues(deviceDistributionSinglePhase){
     const phase = {};
 
     //Anlegen der Werte von Blind- und Wirkleistung für die Phase L1
-    phase.p_L1 = 0;
-    phase.q_L1 = 0;
+    phase.p = 0;
+    phase.q = 0;
     //Aufsummieren der Werte der einzelenen Geräte auf der Phase L1
     deviceDistributionSinglePhase.forEach(device => {
-        phase.p_L1 = phase.p_L1 + devices[device].p;
-        phase.q_L1 = phase.q_L1 + devices[device].q;
+        phase.p = phase.p + devices[device].p;
+        phase.q = phase.q + devices[device].q;
     });
     //Berechnen der Scheinleistung der einzelnen Phasen
-    phase.s_L1 = calcS(phase.q_L1, phase.p_L1);
+    phase.s = calcS(phase.q, phase.p);
 
     //Berechnen des cosPhi der einzelnen Phasen
-    phase.cosPhi_L1 = calcCosPhi(phase.p_L1, phase.s_L1);
+    phase.cosPhi = calcCosPhi(phase.p, phase.s);
 
     //Berechnen des Phasenverschiebungswinkels für die einzelnen Phasen
-    phase.phi_L1 = calcPhi(phase.cosPhi_L1);
+    phase.phi = calcPhi(phase.cosPhi);
 
     //Berechnen der Stromstärke der einzelnen Phasen
-    phase.i_L1 = calcI(phase.s_L1);
+    phase.i = calcI(phase.s);
 
     return phase;
 }
