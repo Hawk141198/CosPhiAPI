@@ -18,7 +18,7 @@ const deviceDistribution = {
   L3: ['Amp', 'Amp', 'Amp'],
 };
 
-console.log(lib.getPowerSourceValues(deviceDistribution, devices));
+console.log('Werte eines Drehstromanschlusses:', lib.getPowerSourceValues(deviceDistribution, devices));
 
 const deviceDistributionSinglePhase = ['Moving-Head', 'Amp', 'Moving-Head'];
-console.log(lib.getPhaseValues(deviceDistributionSinglePhase, devices));
+console.log('Werte eines Stromkreises:', lib.getPhaseValues(deviceDistributionSinglePhase, devices));

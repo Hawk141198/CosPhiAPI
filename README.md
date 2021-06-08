@@ -18,21 +18,24 @@ Um dies zu berechnen, wird aus der Schein-/Blind- und Wirkleistung eines elektro
 
 Die benötigte Leistung von elektronischen Endgeräten wird üblicherweise mit Watt angegeben, so hat z.B. eine 2kW Stufenlinse (ein typischer analoger Scheinwerfer) eine Leistungsaufnahme von 2000W. Zudiesem Wert ist im Datenblatt oft auch die Scheinleistung in Volt-Ampere (VA) angegeben. Im Datenblatt findet man oft nicht den cos Phi Wert, sondern eher den Powerfactor.
 
-# Dokumentation
+# Beispiele
+  In der Datei src/index.js ist ein Beispiel gegeben mit drei Geräten, die auf einem Drehstromanschluss hängen bzw. auf einem einzelen Stromkreis.
 
   Mit dieser Library ist es möglich die verschiedenen (für die Veranstaltungstechnik interressanten) Werte eines Gerätes, Schuko- oder Drehstromanschlusses zu brechnen.
-  Dabei ist muss Gerät mindestens zwei Werte angegeben haben. Die Methode ``calcAllValues`` kann die restlichen Werte dann berechnen.
+  Dabei ist muss Gerät mindestens zwei Werte angegeben haben. Das Gerät errechnet sich die restlichen Werte von selbst, so fern es möglich ist. Wenn nicht, wirft es einen Fehler.
   ```javascript
-  "Moving-Head":{
-    q: 150, // Gegeben
-    s: 150, // Gegeben
-    phi: 48.21273601220948,
-    cosphi: 0.4635080415293762,
-    p: 69.52620622940643
-  }
-  ```
-  Mit Hilfe der Methode ``getPhaseValues`` können die Werte eines Ein-Phasigenanschlusses, z.B. einer Schuko-Leitung, errechnet werden. Dabei gibt sie ein Objekt zurück welches die einzelnen Werte enthält. Z.B:
+  new Device ("Moving-Head", {
+    q: 150,
+    s: 150,
+  })
 
+  // Wird errechnet:
+  phi: 48.21273601220948,
+  cosphi: 0.4635080415293762,
+  p: 69.52620622940643
+  ```
+  
+  Mit Hilfe der Methode ``getPhaseValues`` können die Werte eines Ein-Phasigenanschlusses, z.B. einer Schuko-Leitung, errechnet werden. Dabei gibt sie ein Objekt zurück welches die einzelnen Werte enthält. Z.B:
   ```javascript
   {
     p: 300,
